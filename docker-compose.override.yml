@@ -15,7 +15,7 @@ services:
     backend:
         image: docker.ub.gu.se/rails:ruby-2.3.1
         volumes:
-            - ../backend:/usr/src/app
+            - ../grupprum-server:/usr/src/app
         command: ["sh", "-c", "bundle install && rm -f /usr/src/app/tmp/pids/server.pid && rails server -b 0.0.0.0"]
     db:
         image: postgres:9.4
