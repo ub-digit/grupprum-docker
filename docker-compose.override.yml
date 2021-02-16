@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
     frontend:
-        image: docker.ub.gu.se/ember-dev:3.14.0
+        image: docker.ub.gu.se/ember-dev:1.13
         ports:
             # server
             - 4200:4200
@@ -11,7 +11,7 @@ services:
             # Tests in browser
             - 7357:7357
         volumes:
-            - ../frontend:/home/node/app
+            - ../grupprum:/home/node/app
     backend:
         image: docker.ub.gu.se/rails:ruby-2.3.1
         volumes:

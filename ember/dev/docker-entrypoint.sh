@@ -33,13 +33,7 @@ if [[ "$1" = "ember" ]]; then
   lock_setup
 
   # Check or install npm/bower dependencies:
-  check-dependencies || npm install ||
-
-  # run bower install only if bower.json exist
-  FILE=bower.json
-  if test -f "$FILE"; then
-      bower install
-  fi
+  npm install && bower install
 
   # 'Unlock' the setup process:
   unlock_setup
