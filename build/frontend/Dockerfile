@@ -9,7 +9,7 @@ WORKDIR /root/
 RUN set -ex \
   && git clone $GIT_REPO_URL_FRONTEND release -b $GIT_REVISION_FRONTEND --depth 1
 
-FROM ember-deploy:1.13
+FROM docker.ub.gu.se/ember-deploy:1.13
 
 # ember-cli-shims#0.1.1 seems to require git!?
 USER root
