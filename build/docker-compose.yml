@@ -15,7 +15,7 @@ services:
         - GIT_REPO_URL_BACKEND=${GIT_REPO_URL_BACKEND}
         - GIT_REVISION_BACKEND=${GIT_REVISION_BACKEND}
   postgres:
-    image: docker.ub.gu.se/grupprum-postgres:${GIT_REVISION_BACKEND}
+    image: docker.ub.gu.se/grupprum-postgres:${GIT_REVISION_DOCKER}
     build:
       context: ./postgres
       args:
