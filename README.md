@@ -1,1 +1,1 @@
-docker run -it -p 4010:8080 grupprum-frontend:020 bash
+
