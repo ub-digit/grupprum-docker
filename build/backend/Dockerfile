@@ -7,8 +7,7 @@ ARG GIT_REPO_URL_BACKEND
 WORKDIR /root/
 
 RUN set -ex \
-  #&& git clone $GIT_REPO_URL release -b $GIT_REVISION --depth 1
-  && git clone https://github.com/ub-digit/grupprum-server release -b $GIT_REVISION_BACKEND --depth 1
+  && git clone $GIT_REPO_URL_BACKEND release -b $GIT_REVISION_BACKEND --depth 1
 
 FROM docker.ub.gu.se/rails:ruby-2.3.1
 
