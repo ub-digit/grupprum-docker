@@ -11,6 +11,6 @@ if [ -z "$1" ]; then set -- nginx -c /home/node/nginx.conf -p $PWD/dist "$@"; fi
 if [[ "$1" == "nginx" ]]; then
   # Build app
   set -x
-  ember build --environment=production
+  ember build --environment=$EMBER_ENVIRONMENT
 fi
 exec "$@"

@@ -1,5 +1,5 @@
- 
-FROM ember-base:0.2.3
+
+FROM docker.ub.gu.se/ember-base:1.13
 
 COPY docker-entrypoint.sh /usr/local/bin/
 
@@ -18,4 +18,4 @@ COPY --chown=node:node nginx.conf /home/node/
 
 EXPOSE 8080
 
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+ENTRYPOINT ["docker-entrypoint.sh"]
