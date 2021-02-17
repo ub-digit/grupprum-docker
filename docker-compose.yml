@@ -21,6 +21,7 @@ services:
             - DB_USER=${DB_USER}
             - DB_PASSWORD=${DB_PASSWORD}
             - SECRET_KEY_BASE=${SECRET_KEY_BASE}
+            - AUTH_URL=${AUTH_URL}
         ports:
             - ${RAILS_SERVICE_PORT}:3000
 
