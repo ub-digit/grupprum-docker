@@ -1,1 +1,5 @@
-docker run -it -p 4010:8080 grupprum-frontend:020 bash
+Checka ut grupprum backend: https://github.com/ub-digit/grupprum-server.git
+Checka ut grupprum frontend: https://github.com/ub-digit/grupprum-server.git
+Checka ut det här repot
+
+
