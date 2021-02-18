@@ -1,66 +1,38 @@
 version: "3.5"
 services:
-
     db:
-        image: postgres:9.4
-        container_name: grupprum_db
         restart: always
         environment:
             - POSTGRES_DB=${DB}
             - POSTGRES_USER=${DB_USER}
             - POSTGRES_PASSWORD=${DB_PASSWORD}
-            #- POSTGRES_DB=bubba_dev
-            #- POSTGRES_USER=postgres
-            #- POSTGRES_PASSWORD=postgres
-        # command: ["postgres", "-c", "default_with_oids=on"]
         volumes:
             - ./postgres-initdb.d:/docker-entrypoint-initdb.d
-            - ./dbdata:/var/lib/postgresql/data
+            - dbdata:/var/lib/postgresql/data
     backend:
-        image: local_ruby:2.4.8
-        #image: docker.ub.gu.se/rails:ruby-2.3.1
-        container_name: grupprum_backend
         restart: always
-        depends_on: 
+        depends_on:
             - db
         environment:
-            #- ENVIRONMENT=${ENVIRONMENT}
-            - GRUPPRUM_DB_PORT=5432
-            - GRUPPRUM_DB=bubba_dev
-            - GRUPPRUM_DB_USER=postgres
-            - GRUPPRUM_PASSWORD=postgres
+            - ENVIRONMENT=${ENVIRONMENT}
+            - DB_HOST=${DB_HOST}
+            - DB_PORT=5432
+            - DB=${DB}
+            - DB_USER=${DB_USER}
+            - DB_PASSWORD=${DB_PASSWORD}
+            - SECRET_KEY_BASE=${SECRET_KEY_BASE}
+            - AUTH_URL=${AUTH_URL}
         ports:
-            - 3000:3000
-        volumes:
-            - ../grupprum-server:/usr/src/app
-        command: ["sh", "-c", "bundle install && rm -f /usr/src/app/tmp/pids/server.pid && rails server -b 0.0.0.0"]
+            - ${RAILS_SERVICE_PORT}:3000
 
-    
     frontend:
-        image: grupprum-tmp
-        container_name: grupprum_frontend
-        user: "${UID}:${GID}"
-        #user: "1000:1000"
         # Keep the stdin open, so we can attach to our app container's process
         # and do things such as debugging, etc
         stdin_open: true
-        # Enable sending RUN echo '{ "allow_root": true }' > /root/.bowerrc (CTRL+C, CTRL+P + CTRL+Q) into the container
         tty: true
-        working_dir: /home/node/app
-        ports:
-            # TODO: Change production image to 4200 instead of 8080
-            # so dont have to override here
-            # server
-            - 4200:4200
-            # livereload
-            - 7020:7020
-            # Tests in browser
-            - 7357:7357
-        volumes:
-            - ../grupprum:/home/node/app
-        command: ["ember", "server"]
-
-
-
-
-  
+        environment:
+            - EMBER_ENVIRONMENT=${ENVIRONMENT}
+            - SERVICE_HOSTNAME=${SERVICE_HOSTNAME}
+            - BACKEND_SERVICE_PORT=${RAILS_SERVICE_PORT}
+volumes:
+    dbdata:

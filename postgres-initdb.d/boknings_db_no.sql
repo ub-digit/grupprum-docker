@@ -14,7 +14,6 @@ SET escape_string_warning = off;
 --
 
 
-
 SET search_path = public, pg_catalog;
 
 --
@@ -130,7 +129,21 @@ CREATE TABLE dagar (
     ordning numeric(1,0)
 );
 
+CREATE TABLE gamla_bokningar (
+    obj_id integer NOT NULL,
+    typ integer NOT NULL,
+    dag date,
+    start numeric(4,2) NOT NULL,
+    slut numeric(4,2) NOT NULL,
+    bokad boolean DEFAULT false,
+    bokad_barcode character varying(14),
+    status integer DEFAULT 1,
+    kommentar character varying(100),
+    old_oid oid
+);
 
+
+ALTER TABLE public.gamla_bokningar OWNER TO postgres;
 --
 -- Name: gamla_openhours; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
@@ -11320,10 +11333,10 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 
 REVOKE ALL ON TABLE bokning FROM PUBLIC;
-REVOKE ALL ON TABLE bokning FROM gubmail;
-GRANT ALL ON TABLE bokning TO gubmail;
-GRANT SELECT ON TABLE bokning TO illbill_lab_read;
-GRANT SELECT ON TABLE bokning TO read_only_user;
+REVOKE ALL ON TABLE bokning FROM postgres;
+GRANT ALL ON TABLE bokning TO postgres;
+GRANT SELECT ON TABLE bokning TO postgres;
+GRANT SELECT ON TABLE bokning TO postgres;
 
 
 --
@@ -11331,10 +11344,10 @@ GRANT SELECT ON TABLE bokning TO read_only_user;
 --
 
 REVOKE ALL ON TABLE bokning_backup FROM PUBLIC;
-REVOKE ALL ON TABLE bokning_backup FROM gubmail;
-GRANT ALL ON TABLE bokning_backup TO gubmail;
-GRANT SELECT ON TABLE bokning_backup TO illbill_lab_read;
-GRANT SELECT ON TABLE bokning_backup TO read_only_user;
+REVOKE ALL ON TABLE bokning_backup FROM postgres;
+GRANT ALL ON TABLE bokning_backup TO postgres;
+GRANT SELECT ON TABLE bokning_backup TO postgres;
+GRANT SELECT ON TABLE bokning_backup TO postgres;
 
 
 --
@@ -11342,10 +11355,10 @@ GRANT SELECT ON TABLE bokning_backup TO read_only_user;
 --
 
 REVOKE ALL ON TABLE boknings_objekt FROM PUBLIC;
-REVOKE ALL ON TABLE boknings_objekt FROM gubmail;
-GRANT ALL ON TABLE boknings_objekt TO gubmail;
-GRANT SELECT ON TABLE boknings_objekt TO illbill_lab_read;
-GRANT SELECT ON TABLE boknings_objekt TO read_only_user;
+REVOKE ALL ON TABLE boknings_objekt FROM postgres;
+GRANT ALL ON TABLE boknings_objekt TO postgres;
+GRANT SELECT ON TABLE boknings_objekt TO postgres;
+GRANT SELECT ON TABLE boknings_objekt TO postgres;
 
 
 --
@@ -11353,10 +11366,10 @@ GRANT SELECT ON TABLE boknings_objekt TO read_only_user;
 --
 
 REVOKE ALL ON TABLE typ_1_grupprum FROM PUBLIC;
-REVOKE ALL ON TABLE typ_1_grupprum FROM gubmail;
-GRANT ALL ON TABLE typ_1_grupprum TO gubmail;
-GRANT SELECT ON TABLE typ_1_grupprum TO illbill_lab_read;
-GRANT SELECT ON TABLE typ_1_grupprum TO read_only_user;
+REVOKE ALL ON TABLE typ_1_grupprum FROM postgres;
+GRANT ALL ON TABLE typ_1_grupprum TO postgres;
+GRANT SELECT ON TABLE typ_1_grupprum TO postgres;
+GRANT SELECT ON TABLE typ_1_grupprum TO postgres;
 
 
 --
@@ -11364,10 +11377,10 @@ GRANT SELECT ON TABLE typ_1_grupprum TO read_only_user;
 --
 
 REVOKE ALL ON TABLE dag_ordning FROM PUBLIC;
-REVOKE ALL ON TABLE dag_ordning FROM gubmail;
-GRANT ALL ON TABLE dag_ordning TO gubmail;
-GRANT SELECT ON TABLE dag_ordning TO illbill_lab_read;
-GRANT SELECT ON TABLE dag_ordning TO read_only_user;
+REVOKE ALL ON TABLE dag_ordning FROM postgres;
+GRANT ALL ON TABLE dag_ordning TO postgres;
+GRANT SELECT ON TABLE dag_ordning TO postgres;
+GRANT SELECT ON TABLE dag_ordning TO postgres;
 
 
 --
@@ -11375,10 +11388,10 @@ GRANT SELECT ON TABLE dag_ordning TO read_only_user;
 --
 
 REVOKE ALL ON TABLE dagar FROM PUBLIC;
-REVOKE ALL ON TABLE dagar FROM gubmail;
-GRANT ALL ON TABLE dagar TO gubmail;
-GRANT SELECT ON TABLE dagar TO illbill_lab_read;
-GRANT SELECT ON TABLE dagar TO read_only_user;
+REVOKE ALL ON TABLE dagar FROM postgres;
+GRANT ALL ON TABLE dagar TO postgres;
+GRANT SELECT ON TABLE dagar TO postgres;
+GRANT SELECT ON TABLE dagar TO postgres;
 
 
 --
@@ -11386,10 +11399,10 @@ GRANT SELECT ON TABLE dagar TO read_only_user;
 --
 
 REVOKE ALL ON TABLE gamla_openhours FROM PUBLIC;
-REVOKE ALL ON TABLE gamla_openhours FROM gubmail;
-GRANT ALL ON TABLE gamla_openhours TO gubmail;
-GRANT SELECT ON TABLE gamla_openhours TO illbill_lab_read;
-GRANT SELECT ON TABLE gamla_openhours TO read_only_user;
+REVOKE ALL ON TABLE gamla_openhours FROM postgres;
+GRANT ALL ON TABLE gamla_openhours TO postgres;
+GRANT SELECT ON TABLE gamla_openhours TO postgres;
+GRANT SELECT ON TABLE gamla_openhours TO postgres;
 
 
 --
@@ -11397,10 +11410,10 @@ GRANT SELECT ON TABLE gamla_openhours TO read_only_user;
 --
 
 REVOKE ALL ON TABLE lokal FROM PUBLIC;
-REVOKE ALL ON TABLE lokal FROM gubmail;
-GRANT ALL ON TABLE lokal TO gubmail;
-GRANT SELECT ON TABLE lokal TO illbill_lab_read;
-GRANT SELECT ON TABLE lokal TO read_only_user;
+REVOKE ALL ON TABLE lokal FROM postgres;
+GRANT ALL ON TABLE lokal TO postgres;
+GRANT SELECT ON TABLE lokal TO postgres;
+GRANT SELECT ON TABLE lokal TO postgres;
 
 
 --
@@ -11408,10 +11421,10 @@ GRANT SELECT ON TABLE lokal TO read_only_user;
 --
 
 REVOKE ALL ON TABLE lokal_sort FROM PUBLIC;
-REVOKE ALL ON TABLE lokal_sort FROM root;
-GRANT ALL ON TABLE lokal_sort TO root;
-GRANT SELECT ON TABLE lokal_sort TO illbill_lab_read;
-GRANT SELECT ON TABLE lokal_sort TO read_only_user;
+REVOKE ALL ON TABLE lokal_sort FROM postgres;
+GRANT ALL ON TABLE lokal_sort TO postgres;
+GRANT SELECT ON TABLE lokal_sort TO postgres;
+GRANT SELECT ON TABLE lokal_sort TO postgres;
 
 
 --
@@ -11419,10 +11432,10 @@ GRANT SELECT ON TABLE lokal_sort TO read_only_user;
 --
 
 REVOKE ALL ON TABLE openhours FROM PUBLIC;
-REVOKE ALL ON TABLE openhours FROM gubmail;
-GRANT ALL ON TABLE openhours TO gubmail;
-GRANT SELECT ON TABLE openhours TO illbill_lab_read;
-GRANT SELECT ON TABLE openhours TO read_only_user;
+REVOKE ALL ON TABLE openhours FROM postgres;
+GRANT ALL ON TABLE openhours TO postgres;
+GRANT SELECT ON TABLE openhours TO postgres;
+GRANT SELECT ON TABLE openhours TO postgres;
 
 
 --
@@ -11430,10 +11443,10 @@ GRANT SELECT ON TABLE openhours TO read_only_user;
 --
 
 REVOKE ALL ON TABLE typ_info FROM PUBLIC;
-REVOKE ALL ON TABLE typ_info FROM gubmail;
-GRANT ALL ON TABLE typ_info TO gubmail;
-GRANT SELECT ON TABLE typ_info TO illbill_lab_read;
-GRANT SELECT ON TABLE typ_info TO read_only_user;
+REVOKE ALL ON TABLE typ_info FROM postgres;
+GRANT ALL ON TABLE typ_info TO postgres;
+GRANT SELECT ON TABLE typ_info TO postgres;
+GRANT SELECT ON TABLE typ_info TO postgres;
 
 
 --
@@ -11441,10 +11454,10 @@ GRANT SELECT ON TABLE typ_info TO read_only_user;
 --
 
 REVOKE ALL ON TABLE typ_2_datorer FROM PUBLIC;
-REVOKE ALL ON TABLE typ_2_datorer FROM gubmail;
-GRANT ALL ON TABLE typ_2_datorer TO gubmail;
-GRANT SELECT ON TABLE typ_2_datorer TO illbill_lab_read;
-GRANT SELECT ON TABLE typ_2_datorer TO read_only_user;
+REVOKE ALL ON TABLE typ_2_datorer FROM postgres;
+GRANT ALL ON TABLE typ_2_datorer TO postgres;
+GRANT SELECT ON TABLE typ_2_datorer TO postgres;
+GRANT SELECT ON TABLE typ_2_datorer TO postgres;
 
 
 --
@@ -11452,10 +11465,10 @@ GRANT SELECT ON TABLE typ_2_datorer TO read_only_user;
 --
 
 REVOKE ALL ON TABLE typ_3_lasstudio FROM PUBLIC;
-REVOKE ALL ON TABLE typ_3_lasstudio FROM gubmail;
-GRANT ALL ON TABLE typ_3_lasstudio TO gubmail;
-GRANT SELECT ON TABLE typ_3_lasstudio TO illbill_lab_read;
-GRANT SELECT ON TABLE typ_3_lasstudio TO read_only_user;
+REVOKE ALL ON TABLE typ_3_lasstudio FROM postgres;
+GRANT ALL ON TABLE typ_3_lasstudio TO postgres;
+GRANT SELECT ON TABLE typ_3_lasstudio TO postgres;
+GRANT SELECT ON TABLE typ_3_lasstudio TO postgres;
 
 
 --

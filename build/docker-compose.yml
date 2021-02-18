@@ -1,23 +1,23 @@
 version: "3.5"
 services:
   frontend:
-    image: docker.ub.gu.se/grupprum-frontend:${GIT_REVISION}
+    image: docker.ub.gu.se/grupprum-frontend:${GIT_REVISION_FRONTEND}
     build:
       context: ./frontend
       args:
-        - GIT_FRONTEND_REPO_URL=${GIT_REPO_URL}
-        - GIT_REVISION=${GIT_REVISION}
+        - GIT_REPO_URL_FRONTEND=${GIT_REPO_URL_FRONTEND}
+        - GIT_REVISION_FRONTEND=${GIT_REVISION_FRONTEND}
   backend:
-    image: docker.ub.gu.se/grupprum-backend:${GIT_REVISION}
+    image: docker.ub.gu.se/grupprum-backend:${GIT_REVISION_BACKEND}
     build:
       context: ./backend
-      args: 
-        - GIT_BACKEND_REPO_URL=${GIT_REPO_URL}
-        - GIT_REVISION=${GIT_REVISION}
+      args:
+        - GIT_REPO_URL_BACKEND=${GIT_REPO_URL_BACKEND}
+        - GIT_REVISION_BACKEND=${GIT_REVISION_BACKEND}
   postgres:
-    image: docker.ub.gu.se/grupprum-postgres:${GIT_REVISION}
+    image: docker.ub.gu.se/grupprum-postgres:${GIT_REVISION_DOCKER}
     build:
       context: ./postgres
       args:
-        - GIT_REPO_URL=${GIT_REPO_URL}
-        - GIT_REVISION=${GIT_REVISION}
+        - GIT_REPO_URL_DOCKER=${GIT_REPO_URL_DOCKER}
+        - GIT_REVISION_DOCKER=${GIT_REVISION_DOCKER}

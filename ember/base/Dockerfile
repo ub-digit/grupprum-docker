@@ -5,7 +5,7 @@ ENV PATH=/home/node/app/bin:$PATH
 
 # Install global node dependencies and required packages
 RUN set -ex \
-  && npm install -g ember-cli@0.2.3 \
+  && npm install -g ember-cli@1.13 \
   && npm install -g bower@1.8.8 \
   && apt-get update \
   && DEBIAN_FRONTEND='noninteractive' apt-get install -y \
