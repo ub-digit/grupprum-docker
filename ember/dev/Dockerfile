@@ -1,4 +1,4 @@
-FROM ember-base:1.13
+FROM docker.ub.gu.se/ember-base:1.13
 
 # Install global development node dependencies
 RUN set -ex \
