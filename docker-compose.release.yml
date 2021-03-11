@@ -3,11 +3,15 @@ version: "3.5"
 services:
   frontend:
     image: docker.ub.gu.se/grupprum-frontend:${GIT_REVISION_FRONTEND}
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:514"
+        syslog-format: "rfc5424"
+        syslog-facility: ${SYSLOG_FACILITY}
+        tag: ${SYSLOG_TAG_FRONTEND}
     ports:
       # Port differs in release image for ember
-      # TODO: Change so nginx listens at 4200 instead to we don't need this?
-      - 4200:8080
+      - ${FRONTEND_PORT}:8080
   backend:
     image: docker.ub.gu.se/grupprum-backend:${GIT_REVISION_BACKEND}
-  db:
-    image: docker.ub.gu.se/grupprum-postgres:${GIT_REVISION_DOCKER}

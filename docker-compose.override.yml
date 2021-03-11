@@ -1,3 +1,4 @@
+#this is for running in development
 version: "3.5"
 
 services:
@@ -19,5 +20,18 @@ services:
         command: ["sh", "-c", "bundle install && rm -f /usr/src/app/tmp/pids/server.pid && rails server -b 0.0.0.0"]
     db:
         image: postgres:9.4
+        restart: always
+        environment:
+            - POSTGRES_DB=${DB}
+            - POSTGRES_USER=${DB_USER}
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
         volumes:
             - ./build/postgres/postgres.conf:/etc/postgresql/postgresql.conf
+            - ./postgres-initdb.d:/docker-entrypoint-initdb.d
+            - dbdata:/var/lib/postgresql/data
+
+ volumes:
+    dbdata:
+        
+        
+            

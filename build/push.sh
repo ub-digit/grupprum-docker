@@ -8,4 +8,3 @@ fi
 
 docker push docker.ub.gu.se/grupprum-frontend:${GIT_REVISION_FRONTEND} && \
 docker push docker.ub.gu.se/grupprum-backend:${GIT_REVISION_BACKEND} && \
-docker push docker.ub.gu.se/grupprum-postgres:${GIT_REVISION_DOCKER}
